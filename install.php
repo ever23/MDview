@@ -1,32 +1,71 @@
 <?php
 
 include("vendor/autoload.php");
-$root = $_SERVER['DOCUMENT_ROOT'];
-$file = substr(__FILE__, strlen($root));
-$file = substr($file, 0, -11);
 
-$file = str_replace("\\", "/", $file);
-$htaccess = "\nRewriteEngine on\nRewriteCond %{REQUEST_URI} \.(md)$|.(MD)$\nRewriteRule . " . $file . "MDview.php";
-$smarty = new Smarty();
-$template = dirname(__FILE__) . '/templates/';
-$smarty->assign("file_htaccess", $_SERVER['DOCUMENT_ROOT'] . '.htaccess');
-$smarty->assign("htaccess", $htaccess);
-if (!file_exists($_SERVER['DOCUMENT_ROOT'] . '.htaccess'))
+class install
 {
 
-    $smarty->assign("accion", "Creado");
-    file_put_contents($_SERVER['DOCUMENT_ROOT'] . '.htaccess', $htaccess);
-} else
-{
-    $f = fopen($_SERVER['DOCUMENT_ROOT'] . '.htaccess', "a");
-    fwrite($f, $htaccess);
-    fclose($f);
-    $smarty->assign("accion", "Editado");
+    protected $smarty = NULL;
+    protected $templates = "";
+    protected $htaccess = "";
+    protected $dir = '';
+
+    public function __construct()
+    {
+        $this->dir = $_SERVER['DOCUMENT_ROOT'];
+        $this->smarty = new Smarty();
+        $this->template = dirname(__FILE__) . '/templates/';
+        $file = substr(__FILE__, strlen($this->dir));
+        $file = substr($file, 0, -11);
+        $file = str_replace("\\", "/", $file);
+        $this->htaccess = "\n# MDview \nRewriteEngine on\nRewriteCond %{REQUEST_URI} \.(md)$|.(MD)$\nRewriteRule . " . $file . "MDview.php\n# MDview ";
+    }
+
+    public function Instalar()
+    {
+
+        $this->smarty->assign("file_htaccess", $this->dir . '.htaccess');
+        $this->smarty->assign("htaccess", $this->htaccess);
+        if (!file_exists($this->dir . '.htaccess'))
+        {
+            $this->WriteFile();
+            $html = $this->smarty->fetch($this->templates . 'instalacion.tpl');
+        } elseif (!$this->is_instaled())
+        {
+            $this->EditFile();
+            $html = $this->smarty->fetch($this->templates . 'instalacion.tpl');
+        } else
+        {
+            $html = $this->smarty->fetch($this->templates . 'instalado.tpl');
+        }
+
+        $this->smarty->assign("dir_mdview", "");
+        $this->smarty->assign("html", $html);
+        $this->smarty->assign("filename", " Instalacion ");
+        $this->smarty->display($this->templates . 'MD.tpl');
+    }
+
+    public function WriteFile()
+    {
+        $this->smarty->assign("accion", "Creado");
+        file_put_contents($this->dir . '.htaccess', $this->htaccess);
+    }
+
+    public function EditFile()
+    {
+        $f = fopen($this->dir . '.htaccess', "a");
+        fwrite($f, $this->htaccess);
+        fclose($f);
+        $this->smarty->assign("accion", "Editado");
+    }
+
+    public function is_instaled()
+    {
+        $f = file_get_contents($this->dir . '.htaccess');
+
+        return preg_match("(" . preg_quote($this->htaccess) . ")", $f);
+    }
+
 }
 
-$html = $smarty->fetch($template . 'instalacion.tpl');
-$smarty->assign("dir_mdview", "");
-$smarty->assign("html", $html);
-$smarty->assign("filename", " Instalacion ");
-
-$smarty->display($template . 'MD.tpl');
+(new install())->Instalar();
