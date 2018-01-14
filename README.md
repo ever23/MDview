@@ -42,4 +42,4 @@ Una ves instalado mostrara los archivos .md en formato html
 
 Para visualizarlo en formato PDF solo se tiene que precionar el boton rojo con el icono
 
-![screshop1](screnshop/2.jpg)
+![screshop2(screnshop/2.jpg)
