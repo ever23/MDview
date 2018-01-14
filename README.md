@@ -14,13 +14,13 @@ para convertir el html generado en pdf si se requiere
 
 Copia la carpeta en un  directorio accesible de tu servidor  apache 
 
-luego desde la linea de comando dirigete al directorio de la MDview y ejecuta 
+luego desde la línea de comando dirígete al directorio de la MDview y ejecuta
 
 ```sh
  composer install 
 ```
 
-Esto instalara las librerias necesarias 
+Esto instalara las librerías  necesarias 
 
 por ultimo ejecuta el archivo install.php desde tu navegador 
 
@@ -28,18 +28,18 @@ y listo tu servidor apache ahora mostrara todos los archivos .md en formato html
 
 ## Uso 
 
-Una ves instalado solo es nesesario visualizar los archivos .md desde tu navegador y se mostraran en formato html
+Una vez instalado solo es necesario visualizar los archivos .md desde tu navegador y se mostraran en formato html
 
 ### Ejemplo
 
-sin intalar MDview al llamar un archivo .md con el navegador se muestra de la siguiente manera
+Sin instalar MDview al llamar un archivo .md con el navegador se muestra de la siguiente manera
 
 ![screshop1](screnshop/md.jpg)
 
-Una ves instalado mostrara los archivos .md en formato html
+Una vez instalado mostrara los archivos .md en formato html
 
 ![screshop1](screnshop/1.jpg)
 
-Para visualizarlo en formato PDF solo se tiene que precionar el boton rojo con el icono
+Para visualizarlo en formato PDF solo se tiene que presionar el botón rojo con el icono
 
-![screshop2(screnshop/2.jpg)
+![screshop2](screnshop/2.jpg)
