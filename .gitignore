@@ -1,0 +1,7 @@
+/composer.lock
+/templates_c/
+/vendor/
+/nbprojec/
+nbproject/private/private.properties
+*.xml
+nbproject/project.properties

@@ -1,0 +1,65 @@
+
+body
+{
+    font-family:sans-serif !important;
+    background: #fff;
+    /* margin-top: -30px;*/
+}
+@media (max-width: 767px) {
+    .main-wrapper {
+        padding: 0px;
+        position: absolute !important;
+    }
+    .main-wrapper .upper-row {
+        margin-bottom: 0;
+    }
+    body
+    {
+        padding: 0px !important;
+
+        /* margin-top: -30px;*/
+    }
+    .wrapper {
+
+        max-width: none !important;
+        margin: 0px!important;
+        margin-top: -60px !important;
+    }
+
+}
+@media (min-width: 992px) {
+
+    .skillset .level-bar {
+        display: inline-block;
+        width: 70%;
+        float: left;
+        position: relative;
+        top: 1px;
+    }
+}
+@page  {  margin:0px;
+          /*margin-top: 60px;*/}
+
+.label {
+    display: inline;
+    padding: 0px;
+    font-size: 17.5px;
+    font-weight: normal;
+    line-height: normal;
+    color: #545E6C;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0px;
+}
+.label-habilidad {
+    background-color: #ffffff;
+}
+.pdf,.no_pdf{
+    display: none;
+}
+.label-habilidad:after 
+{
+    content: ",";
+}
+
