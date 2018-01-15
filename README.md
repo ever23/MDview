@@ -24,6 +24,9 @@ Esto instalara las librerías  necesarias
 
 por ultimo ejecuta el archivo install.php desde tu navegador 
 
+![screshop1](screnshop/install.jpg)
+
+
 y listo tu servidor apache ahora mostrara todos los archivos .md en formato html
 
 ## Uso 
