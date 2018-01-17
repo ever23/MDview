@@ -63,7 +63,7 @@ class install
      */
     public function __construct()
     {
-        $this->dir = $_SERVER['DOCUMENT_ROOT'];
+        $this->dir = realpath($_SERVER['DOCUMENT_ROOT']);
         $this->smarty = new Smarty();
         $this->template = dirname(__FILE__) . '/templates/';
         $file = substr(__FILE__, strlen($this->dir));
@@ -78,9 +78,9 @@ class install
     public function Instalar()
     {
 
-        $this->smarty->assign("file_htaccess", $this->dir . '.htaccess');
+        $this->smarty->assign("file_htaccess", $this->dir . '/.htaccess');
         $this->smarty->assign("htaccess", $this->htaccess);
-        if (!file_exists($this->dir . '.htaccess'))
+        if (!file_exists($this->dir . '/.htaccess'))
         {
             $this->WriteFile();
             $html = $this->smarty->fetch($this->templates . 'instalacion.tpl');
@@ -105,7 +105,7 @@ class install
     public function WriteFile()
     {
         $this->smarty->assign("accion", "Creado");
-        file_put_contents($this->dir . '.htaccess', $this->htaccess);
+        file_put_contents($this->dir . '/.htaccess', $this->htaccess);
     }
 
     /**
@@ -113,7 +113,7 @@ class install
      */
     public function EditFile()
     {
-        $ht = file_get_contents($this->dir . '.htaccess');
+        $ht = file_get_contents($this->dir . '/.htaccess');
         $f = fopen($this->dir . '.htaccess', "w+");
         fwrite($f, $this->htaccess . $ht);
         fclose($f);
@@ -126,7 +126,8 @@ class install
      */
     public function is_instaled()
     {
-        $f = file_get_contents($this->dir . '.htaccess');
+	
+        $f = file_get_contents($this->dir . '/.htaccess');
 
         return preg_match("(" . preg_quote($this->htaccess) . ")", $f);
     }
