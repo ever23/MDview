@@ -2,7 +2,7 @@
 
 ### ¿Que es esto?
 
-Es una erramienta escrita en php que provee la capacidad a un servidor apache de mostrar el contenido de archivos
+Es una herramienta escrita en php que provee la capacidad a un servidor apache de mostrar el contenido de archivos
 .md con texto markdown en formato html similar a como lo muestra Github y en formato pdf.
 
 Utiliza la libreria [cebe/markdown](https://github.com/cebe/markdown/ "markdown") para analizar el markdown y convertirlo en html ademas utiliza [Dompdf](https://github.com/dompdf/dompdf "Dompdf") 
